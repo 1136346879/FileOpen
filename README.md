@@ -73,19 +73,64 @@ QbSdk.preInit(this, new QbSdk.PreInitCallback() {
             TbsDownloader.startDownload(this);
         }
 ```
-方法1、方法2 主要的区别在于方法1更加“自动”，内部会自动判断需不需要下载内核，因此在使用方法1来初始化的话，需要注意一下,此时tbs内核在非Wifi状态下是默认不会下载的，你可以通过以下方法来改变这个设置：
-  QbSdk.setDownloadWithoutWifi(true);
-  
+android项目接使用 TBS X5 框架时问题记录（文档加载不出空白问题解决）
+最近开发遇到一个棘手的问题
+我打开文档后里面的内容变成空白了是怎么回事？
+不知到为何，最后跟踪项目代码
+发现测试整的这个文档是qq应用内部的文件
+我这边打开首先是根据是否有本地路径如有直接打开
+如没有，再去根据网络地址在线文档打开
+发现出现一个错误，没有权限访问该问题，我的解决法案有两种
 
+1，将其文件copy到我们app可以访问的路径下，直接打开即可
+2，直接在线打开（在线打开，也是先把文档下载到本地然后打开）
 
-- 插件加载失败
+过了一阵子后，在9.0手机上发现又出现空白问题
+这个问题你不注意很难找到原因
+android项目接入Tbs-实现项目内部打开office在线文档并解决
 
-首次打开相关文件的时候需要下载相关文件的插件，因此需要保持网络可用状态，否则下载插件失败会出现这个错误。
+最后发现
+我们的 x5webview 内核初始化 放在了application中
+耳此时应用是没有任何全权限的，导致x5内核初始化失败，
+而失败后，你可能不会知道，因为失败后，X5回自动给你切换到系统的webview内核，你也可以顺利的打开webview，你以为一直用的是X5内核，呵呵，其实你懂的
+最后发现应用的存储权限没有
+导致 x5webview 初始化失败
+打开在线文档就会出现空白
 
-- NoSuchMethodException: onCallBackAction
+解决方法：
 
-这个错误我也是懵逼，不管成功打开与否，都会有这玩意，所以暂时先忽略。
+X5webview初始化 在splashActivity中
+同意存储权限之后就初始化X5内核，就不会出现空白的问题了
 
+  RxPermissions(this)
+                    .request(Manifest.permission.WRITE_EXTERNAL_STORAGE,
+                            Manifest.permission.READ_EXTERNAL_STORAGE)
+                    .subscribe {
 
+                            initX5Webview()
+                    }
 
-## 博客
+  /**
+     * x5初始化
+     */
+    private fun initX5Webview(){
+        try {
+            QbSdk.initX5Environment(applicationContext, object : QbSdk.PreInitCallback {
+                override fun onCoreInitFinished() {
+                    val map = mutableMapOf<String, Any>()
+                    map[TbsCoreSettings.TBS_SETTINGS_USE_SPEEDY_CLASSLOADER] = true
+                    QbSdk.initTbsSettings(map)
+                    Log.e("x5--","Both success and failure are called back")
+                }
+
+                override fun onViewInitFinished(p0: Boolean) {
+                    Log.e("x5--","Load the kernel successfully -- $p0")
+                }
+            })
+        } catch (e: Exception) {
+            e.printStackTrace()
+        }
+    }
+————————————————
+
+## 博客   https://blog.csdn.net/wdx_1136346879/article/details/103640920
