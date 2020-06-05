@@ -1,4 +1,4 @@
-package com.silang.superfileview;
+package com.wdx.openfileview;
 
 import android.content.Context;
 import android.content.pm.PackageInfo;
@@ -14,7 +14,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 /**
- * Created by chenshiwen on 2016/12/8.
+ * Created by chenshiwen on 2019/12/8.
  */
 public class ExceptionHandler implements Thread.UncaughtExceptionHandler {
     private static ExceptionHandler handler = new ExceptionHandler();

@@ -1,16 +1,16 @@
-package com.silang.superfileview;
+package com.wdx.openfileview;
 
 /**
- * Created by 12457 on 2017/8/2.
+ * Created by 12457 on 2019/8/2.
  */
 
 import android.app.Application;
-import android.os.Build;
+
 import com.tencent.smtt.sdk.QbSdk;
 
 /**
  * Created by ljh
- * on 2016/12/22.
+ * on 2019/12/22.
  */
 public class App extends Application {
 

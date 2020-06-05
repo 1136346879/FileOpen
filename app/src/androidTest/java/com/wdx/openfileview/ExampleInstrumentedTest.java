@@ -1,4 +1,4 @@
-package com.silang.superfileview;
+package com.wdx.openfileview;
 
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;

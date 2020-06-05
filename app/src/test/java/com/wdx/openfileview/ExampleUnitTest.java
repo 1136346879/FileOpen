@@ -1,4 +1,4 @@
-package com.silang.superfileview;
+package com.wdx.openfileview;
 
 import org.junit.Test;
 

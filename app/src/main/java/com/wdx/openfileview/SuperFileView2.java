@@ -1,4 +1,4 @@
-package com.silang.superfileview;
+package com.wdx.openfileview;
 
 import android.content.Context;
 import android.os.Bundle;
@@ -13,7 +13,7 @@ import com.tencent.smtt.sdk.TbsReaderView;
 import java.io.File;
 
 /**
- * Created by 12457 on 2017/8/29.
+ * Created by 12457 on 2019/8/29.
  */
 
 public class SuperFileView2 extends FrameLayout implements TbsReaderView.ReaderCallback {

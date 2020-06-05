@@ -1,8 +1,6 @@
-package com.silang.superfileview;
+package com.wdx.openfileview;
 
 import android.Manifest;
-import android.content.res.AssetFileDescriptor;
-import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -12,10 +10,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.silang.superfileview.R;
+import com.wdx.openfileview.R;
 
-import java.io.FileReader;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 

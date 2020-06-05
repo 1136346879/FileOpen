@@ -5,9 +5,9 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <com.silang.superfileview.SuperFileView2
+    <com.wdx.openfileview.SuperFileView2
         android:id="@+id/mSuperFileView"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"></com.silang.superfileview.SuperFileView2>
+        android:layout_height="match_parent"></com.wdx.openfileview.SuperFileView2>
 
 </RelativeLayout>

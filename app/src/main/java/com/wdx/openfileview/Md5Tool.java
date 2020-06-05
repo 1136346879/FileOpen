@@ -1,11 +1,11 @@
-package com.silang.superfileview;
+package com.wdx.openfileview;
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
 
 /**
- * Created by 12457 on 2017/8/2.
+ * Created by 12457 on 2019/8/2.
  */
 
 public class Md5Tool {
